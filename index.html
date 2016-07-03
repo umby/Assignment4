@@ -20,6 +20,7 @@
         font-size: 15px;
     }
 
+
         }
 
 
@@ -41,6 +42,12 @@
     .x.axis path {
       display: none;
     }
+        circle {
+            -moz-transition: all 0.3s;
+           -o-transition: all 0.3s;
+           -webkit-transition: all 0.3s;
+           transition: all 0.3s;
+        }
 
         circle:hover {
         fill: red;
@@ -50,7 +57,7 @@
 </head>
 <header class="container">
     <div class="row">
-    <h1 class="col-sm-8">Scatterplot Showing Miles Walked (X) against Seconds of Sleep the Same Night (Y)</h1>
+    <h1 class="col-sm-8">Relationship Between Day Activity and Amount of Sleep</h1>
 
 </div>
 </header>
@@ -71,9 +78,10 @@
     
         <script type="text/javascript">
             //Width and height
-            var w = 600;
-            var h = 500;
-            var padding = 60;
+            var w = 1300;
+            var h = 450;
+            var padding = 100;
+            var margin = 0;
             
             var dataset = [
                 [4.63,23965],
@@ -119,6 +127,9 @@
                               .scale(yScale)
                               .orient("left")
                               .ticks(5);
+
+
+
             //Create SVG element
             var svg = d3.select("body")
                         .append("svg")
@@ -178,6 +189,24 @@
                             return yScale(d[1]);
                        });
                 });
+            //add x axis labels
+            //Create X axis label   
+            svg.append("text")
+            .attr("x", w / 2 )
+            .attr("y",  h -50)
+            .attr("font-size", "30px")
+            .style("text-anchor", "middle")
+            .text("No. of Miles Run During Day");
+
+            //Create Y axis label
+            svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0-margin.left)
+            .attr("x",0 - (h / 2))
+            .attr("dy", "1em")
+            .attr("font-size", "30px")
+            .style("text-anchor", "middle")
+            .text("Min. of Sleep That Night");  
         </script>
     </body>
 </html>
